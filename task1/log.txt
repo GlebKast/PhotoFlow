@@ -1,0 +1,18 @@
+$ git log
+commit 628d5896e8b0d78cffb14482c5ebe3fa33c0d57b (HEAD -> master)
+Author: Gleb_Kastsiukevich <kaststiukevich.g@gmail.com>
+Date:   Tue Feb 12 10:26:45 2019 +0300
+
+    status.txt commited
+
+commit cb09726e3aced48ea9fc269e010148fc2c1c2161
+Author: Gleb_Kastsiukevich <kaststiukevich.g@gmail.com>
+Date:   Tue Feb 12 10:22:51 2019 +0300
+
+    .gitignore
+
+commit bbb12af802f79351f32d625a0d86deaebc145168
+Author: Gleb_Kastsiukevich <kaststiukevich.g@gmail.com>
+Date:   Tue Feb 12 10:08:23 2019 +0300
+
+    add
