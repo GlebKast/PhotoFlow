@@ -22,7 +22,7 @@ body {
 .logo{
     font-family: pacifico;
     display: inline-block;
-    width: 150px;
+    margin-left: 1%;
     padding: 5px;
     color: rgb(0, 0, 0);
     border: none;
@@ -49,36 +49,7 @@ body {
     border-radius: 10px;
     box-shadow:0px 0px 2px 2px red;
 }
-.log_out{
-    width: auto;
-    padding: 5px;
-    color: rgb(0, 0, 0);
-    border: 1px solid #fff;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 100%;
-    text-decoration: none;
-    outline: none;
-    font-family: Calibri;
-    background-color: white;
-    box-shadow: 0px 0px 7px 2px rgb(233, 244, 255);
-}
 
-.my_account{
-    width: auto;
-    padding: 5px;
-    color: rgb(0, 0, 0);
-    border: 1px solid #fff;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 100%;
-    text-decoration: none;
-    outline: none;
-    font-family: Calibri;
-    background-color: rgba(255, 255, 255, 0.97);
-    box-shadow: 0px 0px 7px 2px rgb(233, 244, 255);
-    margin-right: 10px;
-}
 .my_account:hover{
     box-shadow: 0px 0px 2px 2px rgb(202, 252, 255);
 }
@@ -88,7 +59,7 @@ body {
     box-shadow: 0px 0px 2px 2px rgb(202, 252, 255);
 }
 
-.new_post{
+.new_post, .my_account, .log_out{
     width: auto;
     padding: 5px;
     color: rgb(0, 0, 0);
@@ -101,14 +72,15 @@ body {
     font-family: Calibri;
     background-color: white;
     box-shadow: 0px 0px 7px 2px rgb(233, 244, 255);
-    margin-right: 10px;
+    margin-right: 0%;
 }
 .new_post:hover{
     box-shadow: 0px 0px 2px 2px rgb(202, 252, 255);
 }
 
 .user_info_static{
-    position: fixed;
+    position: absolute;
+    top: 0;
     right: 0;
     margin-top: 60px;
     width: 265px;
@@ -120,7 +92,8 @@ body {
 
 .filters_static{
     font-family: Calibri;
-    position: fixed;
+    position: absolute;
+    top: 0;
     right: 0;
     margin-top: 120px;
     width: 265px;
@@ -165,30 +138,25 @@ body {
 
 .posts{
     font-family: Calibri;
-    position: absolute;
-
-    margin-top: 60px;
-    width: auto;
-    flex: 50%;
-    image-orientation: from-image;
+    position: relative;
+    top: 62px;
+    width: 100%;
+    max-width: 500px;
+    margin:  0 auto;
 }
 
 .post{
     background-color: white;
-    position: relative;
     border-radius: 10px;
     border-top: 1px solid white;
-    left: 33vw;
     padding-bottom: 10px;
     margin-bottom: 30px;
     image-orientation: from-image;
 }
 
 .post img{
-    width: 500px;
-    height: available;
+    width: 100%;
     vertical-align: middle;
-    image-orientation: from-image;
 }
 
 .post_buttons{
@@ -255,7 +223,6 @@ body {
     position: relative;
     display: inline-block;
     padding: 5px;
-    width: 490px;
     word-break: break-all;
 }
 
@@ -315,10 +282,8 @@ footer:hover{
 }
 
 .show_more{
-    position: absolute;
     margin-bottom: 100px;
-    margin-left: 33vw;
-    width: 500px;
+    width: 100%;
     height: 40px;
     border-radius: 10px;
     background-color: white;
