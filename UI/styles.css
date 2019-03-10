@@ -168,7 +168,7 @@ body {
 }
 
 .like{
-    background: url("like.png") no-repeat;
+    background: url("icons/like.png") no-repeat;
     background-size: contain;
     margin-left: 5px;
     width: 30px;
@@ -183,7 +183,7 @@ body {
 }
 
 .edit{
-    background: url("edit.png") no-repeat;
+    background: url("icons/edit.png") no-repeat;
     background-size: contain;
     margin-left: 192px;
     width: 30px;
@@ -198,7 +198,7 @@ body {
 }
 
 .delete{
-    background: url("rubbish-bin.png") no-repeat;
+    background: url("icons/rubbish-bin.png") no-repeat;
     background-size: contain;
     margin-left: 192px;
     width: 30px;
