@@ -1,4 +1,5 @@
 var postsService = (function () {
+    //var filterConfig = [];
 
     function sortPostsByDate(somePost) {
         somePost.sort(function (a, b) {
@@ -10,17 +11,17 @@ var postsService = (function () {
         });
     }
 
-    function getPhotoPosts(skip = 0, top = 10, filterConfig, filterStringAuthor, filterStringDate) {
-        var res = photoPosts;
+    function getPhotoPosts(skip = 0, top = 10, filterConfig) {
+        var res = photoPosts.slice();
         sortPostsByDate(res);
-        if(filterConfig === "author"){
+        if(filterConfig[0] === "author"){
             res = res.filter(function (post) {
-                return post.author.toLowerCase() === filterStringAuthor.toLowerCase();
+                return post.author.toLowerCase() === filterConfig[1].toLowerCase();
             });
         }
-        if(filterConfig === "date"){
+        if(filterConfig[0] === "date"){
             res = res.filter(function (post) {
-                return post.createdAt.getMonth() === new Date(filterStringDate).getMonth();
+                return post.createdAt.getDate() === new Date(filterConfig[1]).getDate();
             });
         }
         res = res.slice(skip, skip+top);
@@ -36,8 +37,8 @@ var postsService = (function () {
             }
         }
         if(!t){
-            console.log("no such id found")
-            return 1;
+            console.log("no such id found");
+            return t;
         }
     }
 
@@ -88,12 +89,13 @@ var postsService = (function () {
                 }
             }
             photoPosts.push(post);
+            return true;
         }
         else return false;
     }
 
     function editPost(postID, post) {
-        var clone = getPostById(postID);
+        var clone = Object.assign({}, getPostById(postID));
         if (post.id) clone.id = post.id;
         if (post.description) clone.description = post.description;
         if (post.createdAt) clone.createdAt = post.createdAt;
@@ -139,32 +141,41 @@ var postsService = (function () {
 
 }());
 
+console.log(postsService.getPhotoPosts(0, 20, ""));
 
-console.log(postsService.getPhotoPosts(0, 10, "date", "", new Date("2019-03-01T23:00:00")));
+console.log(postsService.getPhotoPosts(0, 10, ["date", new Date("2019-03-18")]));
 
-console.log(postsService.getPostById("3"));
+console.log(postsService.getPhotoPosts(0, 10, ["author", "KastG"]));
 
-postsService.validatePost(postsService.getPostById("3"));
+console.log(photoPosts);
 
-postsService.addPost({
-    id: "21",
-    description: "Earth view from google number twenty one",
-    createdAt: new Date("2019-03-10T23:20:00"),
+console.log(postsService.getPostById("12"));
+
+console.log(postsService.validatePost(postsService.getPostById("3")));
+
+console.log(postsService.addPost({
+    id: "33",
+    description: "Earth view from google number two",
+    createdAt: new Date("2019-03-10"),
     location: "Minsk, Belarus",
-    author: "KastG",
-    photoLink: "images/google-earth-view-1494.jpg"
-});
+    author: "Иванов Иван",
+    photoLink: "images/google-earth-view-1064.jpg"
+}));
 
-console.log(postsService.getPhotoPosts(0, 21, "", "", ""));
 
-postsService.editPost("19", {description: "I've changed the description!!!"});
+console.log(photoPosts);
 
-console.log(postsService.getPostById("19"));
+console.log(postsService.getPhotoPosts(0, 21, ""));
 
-postsService.removePost("21");
+postsService.editPost("15", {description: "new description!!!"});
 
-console.log(postsService.getPhotoPosts(0, 21, "", "", ""));
+console.log(postsService.getPostById("15"));
 
+console.log(photoPosts);
+
+postsService.removePost("33");
+
+console.log(photoPosts);
 
 
 
