@@ -46,16 +46,7 @@ var postsService = (function () {
             console.log("no post id");
             return false;
         }
-        if (!post.title) {
-            console.log("no post title");
-            return false;
-        }
-        else {
-            if ((post.title.length >= 100) || post.title.length === 0) {
-                console.log("wrong post title length");
-                return false;
-            }
-        }
+
         if (!post.description) {
             return false;
         }
@@ -104,7 +95,6 @@ var postsService = (function () {
     function editPost(postID, post) {
         var clone = getPostById(postID);
         if (post.id) clone.id = post.id;
-        if (post.title) clone.title = post.title;
         if (post.description) clone.description = post.description;
         if (post.createdAt) clone.createdAt = post.createdAt;
         if (post.location) clone.location = post.location;
@@ -158,7 +148,6 @@ postsService.validatePost(postsService.getPostById("3"));
 
 postsService.addPost({
     id: "21",
-    title: "title 21",
     description: "Earth view from google number twenty one",
     createdAt: new Date("2019-03-10T23:20:00"),
     location: "Minsk, Belarus",

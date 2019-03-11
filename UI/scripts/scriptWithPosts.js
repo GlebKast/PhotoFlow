@@ -1,7 +1,6 @@
 var photoPosts = [
     {
         id: "1",
-        title: "title 1",
         description: "Earth view from google number one",
         createdAt: new Date("2019-03-10T23:00:00"),
         location: "Minsk, Belarus",
@@ -10,7 +9,6 @@ var photoPosts = [
     },
     {
         id: "2",
-        title: "title 2",
         description: "Earth view from google number two",
         createdAt: new Date("2019-03-10T23:01:00"),
         location: "Minsk, Belarus",
@@ -19,7 +17,6 @@ var photoPosts = [
     },
     {
         id: "3",
-        //title: "title 3",
         description: "Earth view from google number three",
         createdAt: new Date("2019-03-10T23:02:00"),
         location: "Minsk, Belarus",
@@ -28,7 +25,6 @@ var photoPosts = [
     },
     {
         id: "4",
-        title: "title 4",
         description: "Earth view from google number four",
         createdAt: new Date("2019-03-10T23:03:00"),
         location: "Minsk, Belarus",
@@ -37,7 +33,6 @@ var photoPosts = [
     },
     {
         id: "5",
-        title: "title 5",
         description: "Earth view from google number five",
         createdAt: new Date("2019-03-10T23:04:00"),
         location: "Belarus",
@@ -46,7 +41,6 @@ var photoPosts = [
     },
     {
         id: "6",
-        title: "title 6",
         description: "Earth view from google number six",
         createdAt: new Date("2019-03-10T23:05:00"),
         location: "Minsk",
@@ -55,7 +49,6 @@ var photoPosts = [
     },
     {
         id: "7",
-        title: "title 7",
         description: "Earth view from google number seven",
         createdAt: new Date("2019-03-10T23:06:00"),
         location: "Minsk, Belarus",
@@ -64,7 +57,6 @@ var photoPosts = [
     },
     {
         id: "8",
-        title: "title 8",
         description: "Earth view from google number eight",
         createdAt: new Date("2019-03-10T23:07:00"),
         location: "Minsk, Belarus",
@@ -73,7 +65,6 @@ var photoPosts = [
     },
     {
         id: "9",
-        title: "title 9",
         description: "Earth view from google number nine",
         createdAt: new Date("2019-03-10T23:08:00"),
         location: "Minsk, Belarus",
@@ -82,7 +73,6 @@ var photoPosts = [
     },
     {
         id: "10",
-        title: "title 10",
         description: "Earth view from google number ten",
         createdAt: new Date("2019-03-10T23:09:00"),
         location: "Minsk, Belarus",
@@ -91,7 +81,6 @@ var photoPosts = [
     },
     {
         id: "11",
-        title: "title 11",
         description: "Фото из Лошицкого парка номер 1",
         createdAt: new Date("2019-03-10T23:10:00"),
         location: "Minsk, Belarus",
@@ -100,7 +89,6 @@ var photoPosts = [
     },
     {
         id: "12",
-        title: "title 12",
         description: "Фото из Лошицкого парка номер 2",
         createdAt: new Date("2019-03-10T23:11:00"),
         location: "Minsk, Belarus",
@@ -109,7 +97,6 @@ var photoPosts = [
     },
     {
         id: "13",
-        title: "title 13",
         description: "Фото из Лошицкого парка номер 3",
         createdAt: new Date("2019-03-10T23:12:00"),
         location: "Minsk, Belarus",
@@ -118,7 +105,6 @@ var photoPosts = [
     },
     {
         id: "14",
-        title: "title 14",
         description: "Фото из Лошицкого парка номер 4",
         createdAt: new Date("2019-03-10T23:13:00"),
         location: "Minsk, Belarus",
@@ -127,7 +113,6 @@ var photoPosts = [
     },
     {
         id: "15",
-        title: "title 15",
         description: "Фото из Лошицкого парка номер 5",
         createdAt: new Date("2019-03-10T23:14:00"),
         location: "Minsk, Belarus",
@@ -136,7 +121,6 @@ var photoPosts = [
     },
     {
         id: "16",
-        title: "title 16",
         description: "Фото из Лошицкого парка номер 6",
         createdAt: new Date("2019-03-10T23:15:00"),
         location: "Minsk, Belarus",
@@ -145,7 +129,6 @@ var photoPosts = [
     },
     {
         id: "17",
-        title: "title 17",
         description: "Фото из Лошицкого парка номер 7",
         createdAt: new Date("2019-03-10T23:16:00"),
         location: "Minsk, Belarus",
@@ -154,7 +137,6 @@ var photoPosts = [
     },
     {
         id: "18",
-        title: "title 18",
         description: "Фото из Лошицкого парка номер 8",
         createdAt: new Date("2019-04-10T23:17:00"),
         location: "Minsk, Belarus",
@@ -163,7 +145,6 @@ var photoPosts = [
     },
     {
         id: "19",
-        title: "title 19",
         description: "Фото из Лошицкого парка номер 9",
         createdAt: new Date("2019-04-10T23:18:00"),
         location: "Minsk, Belarus",
@@ -172,7 +153,6 @@ var photoPosts = [
     },
     {
         id: "20",
-        title: "title 20",
         description: "Фото из Лошицкого парка номер 10",
         createdAt: new Date("2019-04-10T23:19:00"),
         location: "Minsk, Belarus",
