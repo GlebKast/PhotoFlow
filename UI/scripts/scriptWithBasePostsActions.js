@@ -1,5 +1,4 @@
 var postsService = (function () {
-    //var filterConfig = [];
 
     function sortPostsByDate(somePost) {
         somePost.sort(function (a, b) {
@@ -14,16 +13,17 @@ var postsService = (function () {
     function getPhotoPosts(skip = 0, top = 10, filterConfig) {
         var res = photoPosts.slice();
         sortPostsByDate(res);
-        if(filterConfig[0] === "author"){
+        if(filterConfig.author){
             res = res.filter(function (post) {
-                return post.author.toLowerCase() === filterConfig[1].toLowerCase();
+                return post.author.toLowerCase() === filterConfig.author.toLowerCase();
             });
         }
-        if(filterConfig[0] === "date"){
+        if(filterConfig.createdAt){
             res = res.filter(function (post) {
-                return post.createdAt.getDate() === new Date(filterConfig[1]).getDate();
+                return post.createdAt.getDate() === new Date(filterConfig.createdAt).getDate();
             });
         }
+
         res = res.slice(skip, skip+top);
         return res;
     }
@@ -36,10 +36,10 @@ var postsService = (function () {
                 return photoPosts[i];
             }
         }
-        if(!t){
+
             console.log("no such id found");
             return t;
-        }
+
     }
 
     function validatePost(post) {
@@ -95,15 +95,15 @@ var postsService = (function () {
     }
 
     function editPost(postID, post) {
-        var clone = Object.assign({}, getPostById(postID));
-        if (post.id) clone.id = post.id;
-        if (post.description) clone.description = post.description;
-        if (post.createdAt) clone.createdAt = post.createdAt;
-        if (post.location) clone.location = post.location;
-        if (post.author) clone.author = post.author;
-        if (post.photoLink) clone.photoLink = post.photoLink;
+        if (validatePost(post)) {
+            var clone = Object.assign({}, getPostById(postID));
+            if (post.id) clone.id = post.id;
+            if (post.description) clone.description = post.description;
+            if (post.createdAt) clone.createdAt = post.createdAt;
+            if (post.location) clone.location = post.location;
+            if (post.author) clone.author = post.author;
+            if (post.photoLink) clone.photoLink = post.photoLink;
 
-        if (validatePost(clone)) {
             for (var i = 0; i < photoPosts.length; i++) {
                 if (photoPosts[i].id === postID) {
                     photoPosts[i] = clone;
@@ -143,9 +143,15 @@ var postsService = (function () {
 
 console.log(postsService.getPhotoPosts(0, 20, ""));
 
-console.log(postsService.getPhotoPosts(0, 10, ["date", new Date("2019-03-18")]));
+console.log(postsService.getPhotoPosts(0, 10, {
+    createdAt: new Date("2019-03-10"),
+    author: "Иванов Иван"
+}));
 
-console.log(postsService.getPhotoPosts(0, 10, ["author", "KastG"]));
+console.log(postsService.getPhotoPosts(0, 10, {
+    createdAt: "",
+    author: "KastG"
+}));
 
 console.log(photoPosts);
 
