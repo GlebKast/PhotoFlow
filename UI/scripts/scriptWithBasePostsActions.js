@@ -23,7 +23,6 @@ var postsService = (function () {
                 return post.createdAt.getDate() === new Date(filterConfig.createdAt).getDate();
             });
         }
-
         res = res.slice(skip, skip+top);
         return res;
     }
@@ -36,10 +35,8 @@ var postsService = (function () {
                 return photoPosts[i];
             }
         }
-
-            console.log("no such id found");
-            return t;
-
+        console.log("no such id found");
+        return t;
     }
 
     function validatePost(post) {
@@ -95,23 +92,22 @@ var postsService = (function () {
     }
 
     function editPost(postID, post) {
-        if (validatePost(post)) {
-            var clone = Object.assign({}, getPostById(postID));
-            if (post.id) clone.id = post.id;
-            if (post.description) clone.description = post.description;
-            if (post.createdAt) clone.createdAt = post.createdAt;
-            if (post.location) clone.location = post.location;
-            if (post.author) clone.author = post.author;
-            if (post.photoLink) clone.photoLink = post.photoLink;
+        var clone = Object.assign({}, getPostById(postID));
+        if (post.id) clone.id = post.id;
+        if (post.description) clone.description = post.description;
+        if (post.createdAt) clone.createdAt = post.createdAt;
+        if (post.location) clone.location = post.location;
+        if (post.author) clone.author = post.author;
+        if (post.photoLink) clone.photoLink = post.photoLink;
 
+        if (validatePost(clone)) {
             for (var i = 0; i < photoPosts.length; i++) {
                 if (photoPosts[i].id === postID) {
                     photoPosts[i] = clone;
                     return true;
                 }
             }
-        }
-        else return false;
+        } else return false;
     }
 
     function removePost(id) {
@@ -124,9 +120,10 @@ var postsService = (function () {
         }
         if(index === 0){
             console.log("no post with such id");
-            return;
+            return false;
         }
-        photoPosts.splice(index, 1)
+        photoPosts.splice(index, 1);
+        return true;
     }
 
 

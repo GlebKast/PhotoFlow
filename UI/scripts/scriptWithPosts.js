@@ -1,4 +1,4 @@
-var photoPosts = [
+const photoPosts = [
     {
         id: "1",
         description: "Earth view from google number one",
