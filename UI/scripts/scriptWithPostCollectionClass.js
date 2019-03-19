@@ -129,14 +129,14 @@ class PostCollection{
     }
 
     removePost(id) {
-        let index = 0;
+        let index = -1;
         for (let i = 0; i < photoPosts.length; i++) {
             if (photoPosts[i].id === id) {
                 index = i;
                 break;
             }
         }
-        if(index === 0){
+        if(index === -1){
             console.log("no post with such id");
             return false;
         }
