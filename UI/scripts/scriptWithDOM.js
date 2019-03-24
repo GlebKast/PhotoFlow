@@ -1,34 +1,30 @@
 class postsView {
-    constructor(arr){
-        if(arr) {
+    constructor(photoPosts){
+        if(photoPosts) {
+            this._photoPosts = photoPosts;
             this.currentUser = JSON.parse(localStorage.getItem('current_user'));
             this.numOfPosts = 0;
-            for (let i = 0; i < arr.length; i++) {
-                if (this.validatePost(arr[i])) {
-                    this.addPost(arr[i]);
+            for (let i = 0; i < this._photoPosts.length; i++) {
+                if (this._validatePost(this._photoPosts[i])) {
+                    this.numOfPosts++;
+                    localStorage.setItem('posts_number', JSON.stringify(this.numOfPosts));
+                    this._photoPosts[i].id = this.newID(this.numOfPosts);
+                    document.getElementById('posts').innerHTML = this.createHTMLPost(this._photoPosts[i]) + document.getElementById('posts').innerHTML;
+                    localStorage.setItem(this._photoPosts[i].id, JSON.stringify(this._photoPosts[i]));
                 }
             }
         } else{
+            this._photoPosts =[];
             this.numOfPosts = JSON.parse(localStorage.getItem('posts_number'));
             this.currentUser = JSON.parse(localStorage.getItem('current_user'));
         }
-    }
-
-    sortPostsByDate(somePost) {
-        somePost.sort(function (a, b) {
-            if (a.createdAt - b.createdAt < 0) {
-                return 1;
-            } else {
-                return -1;
-            }
-        });
     }
 
     getPostById(idP) {
         return JSON.parse(localStorage.getItem(idP));
     }
 
-    validatePost(post) {
+    _validatePost(post) {
         if (!post.id) {
             console.log("no post id");
             return false;
@@ -131,10 +127,11 @@ class postsView {
     }
 
     addPost(post) {
-        if (this.validatePost(post)) {
+        if (this._validatePost(post)) {
             this.numOfPosts++;
             localStorage.setItem('posts_number', JSON.stringify(this.numOfPosts));
             post.id = this.newID(this.numOfPosts);
+            this._photoPosts.push(post);
             document.getElementById('posts').innerHTML = this.createHTMLPost(post) + document.getElementById('posts').innerHTML;
             localStorage.setItem(post.id, JSON.stringify(post));
             return true;
@@ -162,7 +159,15 @@ class postsView {
             if (config.location) post.location = config.location;
             if (config.author) post.author = config.author;
             if (config.photoLink) post.photoLink = config.photoLink;
-            if(this.validatePost(post)) {
+            if(this._validatePost(post)) {
+
+                for (let i = 0; i < this._photoPosts.length; i++) {
+                    if (this._photoPosts[i].id === id) {
+                        this._photoPosts[i] = post;
+                        return true;
+                    }
+                }
+
                 localStorage.setItem(post.id, JSON.stringify(post));
                 this.updateLent();
                 return true;
@@ -173,6 +178,20 @@ class postsView {
 
     removePost(id) {
         if(this.getPostById(id).author === this.currentUser) {
+
+            let index = -1;
+            for (let i = 0; i < this._photoPosts.length; i++) {
+                if (this._photoPosts[i].id === id) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index === -1) {
+                console.log("no post with such id");
+                return false;
+            }
+            this._photoPosts.splice(index, 1);
+
             let clone = this.getPostById(id);
             localStorage.removeItem(id);
             clone.display = false;
@@ -181,6 +200,10 @@ class postsView {
             return true;
         }
         return false;
+    }
+
+    applyChanges(){
+        photoPosts = this._photoPosts;
     }
 
 }
@@ -291,6 +314,9 @@ function startTests(){
 
     Posts.editPost('0000008', {description: "I've changed something!!!!"});
 
+    console.log(photoPosts);
+    Posts.applyChanges();
+    console.log(photoPosts);
 }
 
 startTests();
