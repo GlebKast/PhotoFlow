@@ -2,10 +2,8 @@
 <html lang="en">
 
 <head>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css"/>
-
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Pacifico"/>
     <meta charset="UTF-8">
     <title>PhotoFlow</title>
@@ -25,6 +23,7 @@
 <div class="posts" >
 
     <div id = "posts"></div>
+
     <button class="show_more" >show more</button>
 
     <footer>
@@ -32,16 +31,12 @@
         Copyright © 2019 Gleb Kastsiukevich<br>
         kastsiukevich.g@gmail.com<br>
         group 7 course 2<br>
-        04.02.19
+        08.04.19
     </footer>
 
-
 </div>
 
-<div class="user_info_static">
-    <img src="icons/ava.jpg" alt="user icon"/>
-    <p id="user_name">KastG</p>
-</div>
+<div class="user_info_static" id="current_user"></div>
 
 <div class="filters_static">
     <p>Filters:</p>
@@ -56,10 +51,9 @@
     <button>Submit</button>
 </div>
 
-
 </body>
 <script src="scripts/scriptWithPosts.js"></script>
-
+<script src="scripts/scriptWithPostCollectionClass.js" ></script>
 <script src="scripts/scriptWithDOM.js"></script>
 
 </html>
