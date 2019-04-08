@@ -1,108 +1,98 @@
-class PostCollection{
-    constructor(photoPosts){
-        this._photoPosts = photoPosts;
+class PostCollection {
+
+    constructor(previousPosts) {
+        if(!previousPosts) {
+            this._photoPosts = [];
+        }
+        else{
+            this._photoPosts = previousPosts;
+        }
     }
 
     _sortPostsByDate(post) {
         post.sort(function (a, b) {
             if (a.createdAt - b.createdAt < 0) {
-                return 1;
-            }
-            else {
                 return -1;
+            } else {
+                return 1;
             }
         });
     }
 
     _validatePost(post) {
-        if (!post.id) {
-            console.log("no post id");
-            return false;
-        }
-        if (!post.description) {
-            return false;
-        }
-        else {
-            if (post.description.length >= 200) {
-                console.log("wrong post:" + post.id + " description length: " + post.description.length);
-                return false;
+        try {
+            if (!post.id) {
+                throw "No ID";
+            }
+            if (!post.description) {
+                throw "No description";
+            } else {
+                if (post.description.length >= 200) {
+                    throw "Wrong description";
+                }
+            }
+            if (!post.createdAt) {
+                throw "No date";
+            }
+            if (!post.author) {
+                throw "No author";
+            } else
+                if (post.author.length === 0) {
+               throw "Wrong author name";
+            }
+            if (!post.location) {
+                throw "No location";
+            }
+            if (!post.photoLink) {
+                throw "No photo link";
+            }
+            if (!post.likes) {
+                throw "No likes field";
             }
         }
-        if (!post.createdAt) {
-            console.log("wrong post id");
-            return false;
-        }
-        if (!post.author) {
-            console.log("wrong post author");
-            return false;
-        }
-        else if (post.author.length === 0) {
-            console.log("wrong post author length");
-            return false;
-        }
-        if(!post.location){
-            console.log("wrong post location");
-            return false;
-        }
-        if(!post.photoLink){
-            console.log("wrong post photoLink");
+        catch(e){
+            console.log("Validation error. " + e);
             return false;
         }
         return true;
     }
 
-    addAll(photoPosts) {
-        this._photoPosts = [];
-        const invalid = [];
-        for (let i = 0; i < photoPosts.length; i++) {
-            if (this._validatePost(photoPosts[i])) {
-                this._photoPosts.push(photoPosts[i]);
-            }
-            else {
-                invalid.push(photoPosts[i]);
-            }
-        }
-        return invalid;
-    }
-
-
     addPost(post) {
-        if (this._validatePost(post)) {
-            for(let i = 0; i < photoPosts.length; i++){
-                if(photoPosts[i].id === post.id){
-                    console.log("post with the same id already exists");
-                    return false;
-                }
+        try {
+            if (this._validatePost(post)) {
+                this._photoPosts.push(post);
+                return true;
             }
-            photoPosts.push(post);
-            return true;
         }
-        else return false;
+        catch (e) {
+            console.log("addPost error. " + e);
+            return false;
+        }
     }
 
     getPhotoPosts(skip = 0, top = 10, filterConfig) {
         let res = photoPosts.slice();
         this._sortPostsByDate(res);
-        if(filterConfig.author){
+        if (filterConfig.author) {
             res = res.filter(function (post) {
                 return post.author.toLowerCase() === filterConfig.author.toLowerCase();
             });
         }
-        if(filterConfig.createdAt){
+        if (filterConfig.createdAt) {
             res = res.filter(function (post) {
                 return post.createdAt.getDate() === new Date(filterConfig.createdAt).getDate();
             });
         }
-        res = res.slice(skip, skip+top);
+        res = res.slice(skip, skip + top);
         return res;
     }
 
     getPostById(id) {
         let t = false;
-        for(let i = 0; i < photoPosts.length; i++ ){
-            if(photoPosts[i].id === id){
-                t = true;
-                return photoPosts[i];
+        for(let i = 0; i < this._photoPosts.length; i++)
+        {
+            if(this._photoPosts[i].id === id){
+                return this._photoPosts[i];
             }
         }
         console.log("no such id found");
@@ -111,90 +101,32 @@ class PostCollection{
 
     editPost(postID, post) {
         let clone = Object.assign({}, this.getPostById(postID));
-        if (post.id) clone.id = post.id;
         if (post.description) clone.description = post.description;
         if (post.createdAt) clone.createdAt = post.createdAt;
         if (post.location) clone.location = post.location;
         if (post.author) clone.author = post.author;
         if (post.photoLink) clone.photoLink = post.photoLink;
+        if (post.likes) clone.likes = post.likes;
         if (this._validatePost(clone)) {
-            for (let i = 0; i < photoPosts.length; i++) {
-                if (photoPosts[i].id === postID) {
-                    photoPosts[i] = clone;
+            for (let i = 0; i < this._photoPosts.length; i++) {
+                if (this._photoPosts[i].id === postID) {
+                    this._photoPosts[i] = clone;
                     return true;
                 }
             }
         }
-        else return false;
+        return false;
     }
 
     removePost(id) {
-        let index = -1;
-        for (let i = 0; i < photoPosts.length; i++) {
-            if (photoPosts[i].id === id) {
-                index = i;
-                break;
-            }
-        }
-        if(index === -1){
+        let index = this._photoPosts.findIndex((item)=>(item.id === id));
+        if (index === -1) {
             console.log("no post with such id");
             return false;
         }
-        photoPosts.splice(index, 1);
+        this._photoPosts.splice(index, 1);
         return true;
     }
-
-
 }
 
-function startTests() {
-    const Collection = new PostCollection(photoPosts);
 
-    console.log(Collection.getPhotoPosts(0,20,""));
-
-    console.log(Collection.getPhotoPosts(0, 10, {
-        createdAt: new Date("2019-03-10"),
-        author: "Иванов Иван"
-    }));
-
-    console.log(Collection.getPhotoPosts(0, 10, {
-        createdAt: "",
-        author: "KastG"
-    }));
-
-    console.log(photoPosts);
-
-    console.log(Collection.getPostById("12"));
-
-    console.log(Collection._validatePost(Collection.getPostById("3")));
-
-    console.log(Collection.addPost({
-        id: "33",
-        description: "Earth view from google number two",
-        createdAt: new Date("2019-03-10"),
-        location: "Minsk, Belarus",
-        author: "Иванов Иван",
-        photoLink: "images/google-earth-view-1064.jpg"
-    }));
-
-    console.log(photoPosts);
-
-    console.log(Collection.getPhotoPosts(0, 21, ""));
-
-    Collection.editPost("15", {description: "new description!!!"});
-
-    console.log(Collection.getPostById("15"));
-
-    console.log(photoPosts);
-
-    Collection.removePost("33");
-
-    console.log(photoPosts);
-
-    console.log(Collection.addAll(photoPosts));
-
-    console.log(Collection);
-
-}
-
-startTests();
