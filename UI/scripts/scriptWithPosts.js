@@ -81,6 +81,16 @@ let photoPosts = [
     }
 ];
 
+if(localStorage.getItem('posts') === null)
+{
+    console.log('Loading default posts to local storage');
+    localStorage.setItem('posts', JSON.stringify(photoPosts));
+    let arr = [];
+    localStorage.setItem('likedPosts', JSON.stringify(arr));
+    localStorage.setItem('posts_number',JSON.stringify(photoPosts.length));
+}
+
+
 
 
 

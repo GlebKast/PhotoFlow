@@ -78,6 +78,89 @@ body {
     box-shadow: 0px 0px 2px 2px rgb(202, 252, 255);
 }
 
+
+
+
+
+
+
+.postEdit{
+    position: fixed;
+    z-index: 20;
+    font-family: Calibri;
+    font-size: 100%;
+    text-decoration: none;
+    top: 100px;
+    left:30%;
+    width: 40%;
+    height: 50%;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.97);
+    border-radius: 10px;
+}
+
+.postEditButtons{
+    position: relative;
+    display: inline-block;
+    top: 400px;
+    left: 30px;
+    text-align: center;
+}
+
+
+.applyChanges:hover{
+    box-shadow: 0px 0px 2px 2px rgb(202, 252, 255);
+}
+.cancel:hover{
+    box-shadow: 0px 0px 2px 2px rgb(202, 252, 255);
+}
+
+.applyChanges, .cancel{
+    width: 60px;
+    padding: 5px;
+    color: rgb(0, 0, 0);
+    border: 1px solid #fff;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 100%;
+    text-decoration: none;
+    outline: none;
+    font-family: Calibri;
+    background-color: white;
+    box-shadow: 0px 0px 7px 2px rgb(233, 244, 255);
+    margin-right: 0%;
+}
+
+.fileInput{
+    position: relative;
+    top: 30px;
+    left: 30px;
+    text-align: center;
+}
+#file-input{
+    width: auto;
+    padding: 5px;
+    color: rgb(0, 0, 0);
+    border: 1px solid #fff;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 100%;
+    text-decoration: none;
+    outline: none;
+    font-family: Calibri;
+    background-color: white;
+    box-shadow: 0px 0px 7px 2px rgb(233, 244, 255);
+    margin-right: 0%;
+}
+#file-input:hover{
+    box-shadow: 0px 0px 2px 2px rgb(202, 252, 255);
+}
+
+
+
+
+
+
 .user_info_static{
     position: absolute;
     top: 0;
