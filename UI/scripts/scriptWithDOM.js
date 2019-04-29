@@ -78,7 +78,7 @@ class PostsView {
     }
 
     addPost(post) {
-        if (this.postsCollection._validatePost(post)) {
+        if (this.postsCollection._validatePost(post) && this.currentUser === post.author) {
             this.numOfPosts++;
             localStorage.setItem('posts_number', JSON.stringify(this.numOfPosts));
             let index = this.postsCollection._photoPosts.findIndex((item)=>(item.id === post.id));
@@ -86,16 +86,14 @@ class PostsView {
                 post.id = this.createNewID();
             }
             this.postsCollection.addPost(post);
-            document.getElementById('posts').innerHTML = this.createHTMLPost(post) + document.getElementById('posts').innerHTML;
             localStorage.setItem('posts', JSON.stringify(this.postsCollection._photoPosts));
-            this.updateLent();
+            document.getElementById('posts').innerHTML = this.createHTMLPost(post) + document.getElementById('posts').innerHTML;  //this.updateLent();
             return true;
         }
         return false;
     }
 
     updateLent(){
-        document.getElementById('user_name').innerHTML = this.currentUser;
         document.getElementById('posts').innerHTML = '';
         let post;
         for(let i = 0; i < this.numOfPosts; i++){
@@ -107,7 +105,7 @@ class PostsView {
     }
 
     editPost(id, config) {
-        let post = this.postsCollection.getPostById(id);
+        let post = this.getPostByID(id);
         if ((post && post.author === this.currentUser) || config.likes) {
             if (this.postsCollection.editPost(id, config)) {
                 localStorage.setItem('posts', JSON.stringify(this.postsCollection._photoPosts));
@@ -119,13 +117,12 @@ class PostsView {
     }
 
     removePost(id) {
-        if(this.postsCollection.getPostById(id).author === this.currentUser) {
+        if(this.getPostByID(id).author === this.currentUser) {
             this.numOfPosts--;
             this.postsCollection.removePost(id);
             localStorage.setItem('posts', JSON.stringify(this.postsCollection._photoPosts));
             localStorage.setItem('posts_number', JSON.stringify(this.numOfPosts));
-            document.getElementById(id).remove();
-            this.updateLent();
+            document.getElementById(id).remove();   //this.updateLent();
             return true;
         }
         return false;
