@@ -1,0 +1,1 @@
+SELECT * FROM photoflow.photo_post where USER_NAME = 'Raonich' and LOCATE('six', DESCRIPTION, 1)<>0;

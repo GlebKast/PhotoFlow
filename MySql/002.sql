@@ -1,0 +1,1 @@
+SELECT * FROM photoflow.photo_post where USER_ID = 1111;
