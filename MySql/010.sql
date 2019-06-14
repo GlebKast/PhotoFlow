@@ -1,0 +1,1 @@
+SELECT * FROM photoflow.photo_post order by photo_post.CREATED_AT desc limit 5;

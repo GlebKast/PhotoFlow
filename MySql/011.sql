@@ -1,0 +1,1 @@
+SELECT datediff(DATE(NOW()), DATE(photo_post.CREATED_AT)) as time from photoflow.photo_post order by photo_post.CREATED_AT limit 1;
