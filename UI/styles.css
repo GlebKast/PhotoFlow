@@ -78,6 +78,88 @@ body {
     box-shadow: 0px 0px 2px 2px rgb(202, 252, 255);
 }
 
+
+
+
+
+
+
+.postEdit{
+    position: fixed;
+    z-index: 20;
+    font-family: Calibri;
+    font-size: 100%;
+    text-decoration: none;
+    top: 70px;
+    margin-left: 20px;
+    width: 600px;
+    height: 400px;
+    outline: none;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px 2px rgb(176, 252, 255);
+}
+
+.postEditButtons{
+    position: relative;
+    display: inline-block;
+    margin-top: 300px;
+    left: 30px;
+    text-align: center;
+}
+
+
+.applyChanges:hover{
+    box-shadow: 0px 0px 2px 2px rgb(202, 252, 255);
+}
+.cancel:hover{
+    box-shadow: 0px 0px 2px 2px rgb(202, 252, 255);
+}
+
+.applyChanges, .cancel{
+    width: 60px;
+    padding: 5px;
+    color: rgb(0, 0, 0);
+    border: 1px solid #fff;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 100%;
+    text-decoration: none;
+    outline: none;
+    font-family: Calibri;
+    background-color: white;
+    box-shadow: 0px 0px 7px 2px rgb(233, 244, 255);
+    margin-right: 0%;
+}
+
+.fileInput{
+    position: relative;
+    top: 30px;
+    text-align: center;
+}
+#file-input{
+    width: 400px;
+    padding: 5px;
+    color: rgb(0, 0, 0);
+    border: 1px solid #fff;
+    border-radius: 10px;
+    font-size: 100%;
+    text-decoration: none;
+    outline: none;
+    font-family: Calibri;
+    background-color: white;
+    box-shadow: 0px 0px 7px 2px rgb(233, 244, 255);
+    margin-right: 0%;
+}
+#file-input:hover{
+    box-shadow: 0px 0px 2px 2px rgb(202, 252, 255);
+}
+
+
+
+
+
+
 .user_info_static{
     position: absolute;
     top: 0;
@@ -149,8 +231,6 @@ body {
 .post{
     background-color: white;
     border-radius: 10px;
-    border-top: 1px solid white;
-    padding-bottom: 10px;
     margin-bottom: 30px;
     image-orientation: from-image;
 }
@@ -246,6 +326,7 @@ body {
 }
 
 .post_time{
+
     position: relative;
     width: fit-content;
 }
@@ -256,6 +337,7 @@ body {
 }
 
 footer{
+
     width: 100%;
     color: rgba(0,0,0, 0.2);
     text-align: center;
